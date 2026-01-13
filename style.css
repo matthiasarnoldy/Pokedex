@@ -1,0 +1,204 @@
+/* Schriftart */
+@font-face {
+    font-family: 'raleway';
+    src: url(./assets/fonts/Raleway-VariableFont_wght.ttf);
+}
+
+/* Allgemein */
+html {
+    background-color: #09222A;
+    scrollbar-color: #DC8758 transparent;
+}
+
+body {
+    font-family: 'raleway';
+    font-size: 18px;
+    font-weight: 400;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 54px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+input {
+    font-size: 24px;
+}
+
+a {
+    color: #FDCB04;
+    opacity: 0.7;
+    transition: all 125ms ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.content_max-width {
+    padding: 0 144px;
+    width: 1440px;
+    max-width: 1440px;
+    display: flex;
+}
+
+/* Header */
+.header {
+    padding: 32px 0;
+    background-color: #192453;
+    display: flex;
+    justify-content: center;
+}
+
+.headerPosition {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemonLogo {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    opacity: 1;
+}
+
+.pokemonLogo:hover {
+    text-decoration: none;
+}
+
+.headerLogo {
+    height: 64px;
+}
+
+.headlineLogo {
+    color: #FDCB04;
+    text-shadow:
+    -4px -4px 0 #3167a7,
+    4px -4px 0 #3167a7,
+    -4px  4px 0 #3167a7,
+    4px  4px 0 #3167a7,
+    0    0    0 #3167a7;
+}
+
+.labelSearch {
+    width: 256px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 5px solid #3167a7;
+    border-radius: 48px;
+    background-color: #eee;
+    overflow: hidden;
+    transition: all 125ms;
+}
+
+.labelSearch:hover {
+    scale: 1.05;
+}
+
+.iconSearch {
+    height: 32px;
+}
+
+.inputSearch {
+    width: 200px;
+    border: none;
+    background-color: #eee;
+    outline: none;
+}
+
+
+/* Main */
+.main {
+    padding: 32px 0;
+    background-image: url(./assets/img/backgroundMain.jpg);
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.mainContent_max-width {
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Footer */
+.footer {
+    padding: 24px 0;
+    background-color: #192453;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 -5px 10px #192453;
+}
+
+.footerContent_max-width {
+    display: flex;
+    align-items: center;
+    gap: 104px;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footerIcon {
+    height: 32px;
+    fill: #FDCB04;
+}
+
+/* Impressum */
+.mainImpressum {
+    align-items: normal;
+}
+
+.impressumContent_max-width {
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: start;
+}
+
+.mainImpressum_section {
+    padding-top: 32px;
+}
+
+.mainImpressum-header {
+    padding: 24px 0 8px;
+}
+
+.mainImpressum-text {
+    padding: 8px 0;
+}
+
+.mainImpressum_datenschutz {
+    padding: 8px 0 32px;
+}
+
+.mainImpressum-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: none;
+    text-underline-position: none;
+    text-underline-offset: none;
+}
