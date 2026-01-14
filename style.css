@@ -6,8 +6,8 @@
 
 /* Allgemein */
 html {
-    background-color: #09222A;
-    scrollbar-color: #DC8758 transparent;
+    background-color: #192453;
+    scrollbar-color: #FDCB04 transparent;
 }
 
 body {
@@ -40,6 +40,10 @@ input {
     font-size: 24px;
 }
 
+button {
+    font-size: 20px;
+}
+
 a {
     color: #FDCB04;
     opacity: 0.7;
@@ -63,6 +67,8 @@ a:hover {
     background-color: #192453;
     display: flex;
     justify-content: center;
+    box-shadow: 0 5px 10px #192453;
+    z-index: 1;
 }
 
 .headerPosition {
@@ -127,8 +133,7 @@ a:hover {
 /* Main */
 .main {
     padding: 32px 0;
-    background-image: url(./assets/img/backgroundMain.jpg);
-    background-position: center;
+    background-color: #ddd;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,6 +144,91 @@ a:hover {
     align-items: center;
     flex-direction: column;
     gap: 32px;
+}
+
+.pokemonArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pokemon {
+    width: 256px;
+    height: 256px;
+    padding: 16px 16px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    border: 3px solid #3167a7;
+    border-radius: 16px;
+    background-color: lightgreen;
+    box-shadow: 0 0 20px rgba(25, 36, 83, 0.5);
+    cursor: pointer;
+    transition: all 125ms;
+}
+
+.pokemon:hover {
+    scale: 1.05;
+}
+
+.pokemon:hover .pokeImg{
+    animation: pokeAnimation 1.5s ease-in-out;
+}
+
+.pokeId {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0.5;
+    text-shadow: 0 0 5px rgba(25, 36, 83, 0.3);
+}
+
+.pokeName {
+    display: flex;
+    justify-content: flex-start;
+    text-shadow: 0 0 5px rgba(25, 36, 83, 0.3);
+}
+
+.pokeTypeImg {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokeType {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pokeTypeBox {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    border-radius: 24px;
+    background-color: rgba(0, 128, 0, 0.1);
+    box-shadow: 0 0 10px rgba(25, 36, 83, 0.3);
+}
+
+.pokeImg {
+    height: 124px;
+}
+
+.loadMorePokemon {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 24px;
+    color: #FDCB04;
+    background-color: #192453;
+    box-shadow: 0 0 10px rgba(25, 36, 83, 0.5);
+    transition: all 125ms;
+}
+
+.loadMorePokemon:hover {
+    cursor: pointer;
+    scale: 1.05;
 }
 
 /* Footer */
@@ -201,4 +291,32 @@ a:hover {
     text-decoration-thickness: none;
     text-underline-position: none;
     text-underline-offset: none;
+}
+
+@keyframes pokeAnimation {
+    0% {
+        /* transform: rotate(360deg) translateY(0); */
+        transform: rotate(0deg) translateY(0);
+    }
+
+    20% {
+        transform: rotate(5deg) translateY(-5px);
+    }
+
+    40% {
+        transform: rotate(-5deg) translateY(5px);
+    }
+
+    60% {
+        transform: rotate(5deg) translateY(-5px);
+        scale: 1.2;
+    }
+
+    80% {
+        transform: rotate(-5deg) translateY(5px);
+    }
+    
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
 }
