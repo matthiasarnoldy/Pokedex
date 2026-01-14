@@ -12,10 +12,9 @@
     <script src="./script.js"></script>
 
     <link rel="stylesheet" href="./styles/standard.css">
-    <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body onload="init()">
     <header class="header">
         <div class="content_max-width headerPosition">
             <a href="#" class="pokemonLogo">
@@ -34,7 +33,7 @@
     </header>
     <main class="main">
         <div id="main" class="content_max-width mainContent_max-width">
-            <section class="pokemonArea">
+            <section id="pokemonArea" class="pokemonArea">
                 <div class="pokemon">
                     <header class="pokeId"><h3>#1</h3></header>
                     <h2 class="pokeName">Bulbasaur</h2>
