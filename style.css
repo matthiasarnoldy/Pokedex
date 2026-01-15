@@ -27,7 +27,7 @@ h1 {
 }
 
 h2 {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 600;
 }
 
@@ -213,7 +213,80 @@ a:hover {
 }
 
 .pokeImg {
+    width: 124px;
     height: 124px;
+}
+
+.normal {
+    background-color: #CFCFC3;
+}
+
+.fighting {
+    background-color: #CF887C;
+}
+
+.flying {
+    background-color: #B5D9FF;
+}
+
+.poison {
+    background-color: #B486DC;
+}
+
+.ground {
+    background-color: #C09D74;
+}
+
+.rock {
+    background-color: #CFC393;
+}
+
+.bug {
+    background-color: #B3D369;
+}
+
+.electric {
+    background-color: #997B9A;
+}
+
+.steel {
+    background-color: #C3C3CF;
+}
+
+.fire {
+    background-color: #FF7A60;
+}
+
+.water {
+    background-color: #6BB9EC;
+}
+
+.grass {
+    background-color: #91D18B;
+}
+
+.electric {
+    background-color: #FFE64C;
+}
+
+.psychic {
+    background-color: #FF91A6;
+}
+
+.ice {
+    background-color: #9DDDD2;
+}
+
+.dragon {
+    background-color: #889AD1;
+}
+
+.dark {
+    background-color: #837C7C;
+}
+
+.fairy {
+    background-color: #F1B0EE;
 }
 
 .loadMorePokemon {

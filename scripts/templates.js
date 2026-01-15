@@ -1,15 +1,18 @@
-function getPokemonCardTemplate(pokemon) {
+function getPokemonCardTemplate(indexAllPokemon) {
     return `
-        <div class="pokemon">
-            <header class="pokeId"><h3>#1</h3></header>
-            <h2 class="pokeName">${(pokemon.name).toUpperCase()}</h2>
+        <div onclick="openPokemon(${indexAllPokemon})" class="pokemon ${allPokemon[indexAllPokemon].types[0].type.name}">
+            <header class="pokeId"><h3>#${indexAllPokemon + 1}</h3></header>
+            <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
             <section class="pokeTypeImg">
-                <div class="pokeType">
-                    <span class="pokeTypeBox">Grass</span>
-                    <span class="pokeTypeBox">Poison</span>
-                </div>
-                <figure><img src="./assets/icons/favicon.png" alt="" class="pokeImg"></figure>
+                <div id="pokeType${indexAllPokemon}" class="pokeType"></div>
+                <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImg"></figure>
             </section>
         </div>
+    `;
+}
+
+function getPokemonTypeTemplate(indexAllPokemon, indexPokemonType) {
+    return `
+        <span class="pokeTypeBox">${allPokemon[indexAllPokemon].types[indexPokemonType].type.name}</span>
     `;
 }
