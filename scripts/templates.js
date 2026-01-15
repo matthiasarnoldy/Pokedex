@@ -16,3 +16,9 @@ function getPokemonTypeTemplate(indexAllPokemon, indexPokemonType) {
         <span class="pokeTypeBox">${allPokemon[indexAllPokemon].types[indexPokemonType].type.name}</span>
     `;
 }
+
+function getPokemonBigTemplate(indexAllPokemon) {
+    return `
+        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImg"></figure>
+    `;
+}

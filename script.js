@@ -71,5 +71,20 @@ function renderPokemonCardType(indexAllPokemon) {
 // }
 
 function openPokemon(indexAllPokemon) {
-    console.log(indexAllPokemon)
+    let dialogRef = document.getElementById('pokemonBig');
+    dialogRef.classList.add('open');
+    // renderPokemonBig(dialogRef, indexAllPokemon);
+    dialogRef.showModal();
+    dialogRef.addEventListener('close', () => {
+        dialogRef.setAttribute('class', 'pokemonBig');
+    });
+}
+
+function renderPokemonBig(dialogRef, indexAllPokemon) {
+    dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
+    setPokemonBg(dialogRef, indexAllPokemon);
+}
+
+function setPokemonBg(dialogRef, indexAllPokemon) {
+    dialogRef.classList.add(allPokemon[indexAllPokemon].types[0].type.name)
 }
