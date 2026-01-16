@@ -2,14 +2,15 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 const allPokemon = [];
 
 function init() {
-    loadData("pokemon?limit=20&offset=232")
+    loadData("pokemon?limit=40&offset=232")
+    // loadData("pokemon?limit=150&offset=0")
 }
 
 async function loadData(path="") {
     let response = await fetch(BASE_URL + path + ".json")
     let responseAsJson = await response.json();
     responseAsJson.results.forEach(pokemon => allPokemon.push(pokemon));
-    // console.log(responseAsJson);
+    console.log(responseAsJson);
     // loadMoreData("pokemon?limit=20&offset=24") // path durch responseAsJson.next ersetzen?
     pokemonUrlToPath();
 }
@@ -73,7 +74,7 @@ function renderPokemonCardType(indexAllPokemon) {
 function openPokemon(indexAllPokemon) {
     let dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.add('open');
-    // renderPokemonBig(dialogRef, indexAllPokemon);
+    renderPokemonBig(dialogRef, indexAllPokemon);
     dialogRef.showModal();
     dialogRef.addEventListener('close', () => {
         dialogRef.setAttribute('class', 'pokemonBig');
@@ -82,7 +83,23 @@ function openPokemon(indexAllPokemon) {
 
 function renderPokemonBig(dialogRef, indexAllPokemon) {
     dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
+    renderPokemonBigType(indexAllPokemon);
     setPokemonBg(dialogRef, indexAllPokemon);
+}
+
+function renderPokemonBigType(indexAllPokemon) {
+    let pokemonTypeRef = document.getElementById('pokeBigType');
+    for (let indexPokemonType = 0; indexPokemonType < allPokemon[indexAllPokemon].types.length; indexPokemonType++) {
+        pokemonTypeRef.innerHTML += getPokemonBigTypeTemplate(indexAllPokemon, indexPokemonType); 
+    }
+    renderPokemonInfo(indexAllPokemon);
+}
+
+function renderPokemonInfo(indexAllPokemon) {
+    let pokemonStatsRef = document.getElementById('pokemonStats');
+    for (let indexInfo = 0; indexInfo < allPokemon[indexAllPokemon].stats.length; indexInfo++) {
+        pokemonStatsRef.innerHTML += getPokemonInfoTemplate(indexAllPokemon, indexInfo);
+    }
 }
 
 function setPokemonBg(dialogRef, indexAllPokemon) {
