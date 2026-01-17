@@ -41,6 +41,7 @@ function pushPokemonData(indexPokeData, responseAsJson) {
     allPokemon[indexPokeData].height = responseAsJson.height;
     allPokemon[indexPokeData].held_items = responseAsJson.held_items;
     allPokemon[indexPokeData].id = responseAsJson.id;
+    allPokemon[indexPokeData].species = responseAsJson.species;
     allPokemon[indexPokeData].sprites = responseAsJson.sprites;
     allPokemon[indexPokeData].stats = responseAsJson.stats;
     allPokemon[indexPokeData].types = responseAsJson.types;
@@ -84,6 +85,7 @@ function openPokemon(indexAllPokemon) {
 function renderPokemonBig(dialogRef, indexAllPokemon) {
     dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
     renderPokemonBigType(indexAllPokemon);
+    renderPokemonAbout(indexAllPokemon);
     setPokemonBg(dialogRef, indexAllPokemon);
 }
 
@@ -92,13 +94,28 @@ function renderPokemonBigType(indexAllPokemon) {
     for (let indexPokemonType = 0; indexPokemonType < allPokemon[indexAllPokemon].types.length; indexPokemonType++) {
         pokemonTypeRef.innerHTML += getPokemonBigTypeTemplate(indexAllPokemon, indexPokemonType); 
     }
-    renderPokemonInfo(indexAllPokemon);
 }
 
-function renderPokemonInfo(indexAllPokemon) {
-    let pokemonStatsRef = document.getElementById('pokemonStats');
+function renderPokemonAbout(indexAllPokemon) {
+    let pokemonInfoRef = document.getElementById('pokemonStats');
+    // let pokemonAbilities = allPokemon[indexAllPokemon].abilities.forEach(ability => {
+    //     ability.ability.name
+    // });
+    pokemonInfoRef.innerHTML = getPokemonAboutTemplate(indexAllPokemon);
+    renderPokemonAboutAbilities(indexAllPokemon);
+}
+
+function renderPokemonAboutAbilities(indexAllPokemon) {
+    let aboutAbilitiesRef = document.getElementById('aboutAbilities');
+    for (let indexAbilities = 0; indexAbilities < allPokemon[indexAllPokemon].abilities.length; indexAbilities++) {
+        aboutAbilitiesRef.innerHTML += getPokemonAbilitiesTemplate(indexAllPokemon, indexAbilities)
+    }
+}
+
+function renderPokemonStats(indexAllPokemon) {
+    let pokemonInfoRef = document.getElementById('pokemonStats');
     for (let indexInfo = 0; indexInfo < allPokemon[indexAllPokemon].stats.length; indexInfo++) {
-        pokemonStatsRef.innerHTML += getPokemonInfoTemplate(indexAllPokemon, indexInfo);
+        pokemonInfoRef.innerHTML += getPokemonStatsTemplate(indexAllPokemon, indexInfo);
     }
 }
 

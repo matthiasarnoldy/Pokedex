@@ -409,10 +409,17 @@ dialog.open::backdrop {
     flex-direction: column;
 }
 
+.pokemonStats p {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
 .statsList {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 16px;
 }
 
