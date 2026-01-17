@@ -27,7 +27,7 @@
                     480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 
                     128 128 192.5 128 272C128 351.5 192.5 416 272 416z"/>
                 </svg>
-                <input id="headerSearch" class="inputSearch" type="text">
+                <input onkeyup="searchPokemon()" id="headerSearch" class="inputSearch" type="text">
             </label>
         </div>
     </header>
@@ -35,7 +35,7 @@
         <div id="main" class="content_max-width mainContent_max-width">
             <section id="pokemonArea" class="pokemonArea"></section>
             <section class="loadMore">
-                <button class="loadMorePokemon">Load more</button>
+                <button onclick="loadMoreData(loadDataResponse.next)" class="loadMorePokemon">Load more</button>
             </section>
         </div>
     </main>

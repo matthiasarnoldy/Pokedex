@@ -361,6 +361,7 @@ dialog.open::backdrop {
     width: 256px;
     height: 256px;
     margin-top: -64px;
+    margin-right: -64px;
 }
 
 .pokemonInfo {

@@ -29,10 +29,9 @@ function getPokemonBigTemplate(indexAllPokemon) {
         </section>
         <section class="pokemonInfo">
             <ul class="pokemonNav">
-                <li onclick="(${indexAllPokemon})" id="infoAbout" class="pokemonHeaderInfo pokemonNavActive"><h4>About</h4></li>
+                <li onclick="renderPokemonAbout(${indexAllPokemon})" id="infoAbout" class="pokemonHeaderInfo"><h4>About</h4></li>
                 <li onclick="renderPokemonStats(${indexAllPokemon})" id="infoStats" class="pokemonHeaderInfo"><h4>Stats</h4></li>
-                <li onclick="(${indexAllPokemon})" id="infoAbilities" class="pokemonHeaderInfo"><h4>Abilities</h4></li>
-                <li onclick="(${indexAllPokemon})" id="infoEvolutions" class="pokemonHeaderInfo"><h4>Evolutions</h4></li>
+                <li onclick="renderPokemonShiny(${indexAllPokemon})" id="infoAbilities" class="pokemonHeaderInfo"><h4>Shiny</h4></li>
             </ul>
             <main id="pokemonStats" class="pokemonStats"></main>
         </section>
@@ -57,6 +56,12 @@ function getPokemonAbilitiesTemplate(indexAllPokemon, indexAbilities) {
 function getPokemonStatsTemplate(indexAllPokemon, indexInfo) {
     return `
         <span class="statsList"><h4>${allPokemon[indexAllPokemon].stats[indexInfo].stat.name}</h4><p>${allPokemon[indexAllPokemon].stats[indexInfo].base_stat}</p></span>
+    `;
+}
+
+function getPokemonShinyTemplate(indexAllPokemon) {
+    return `
+        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.home.front_shiny}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgBig"></figure>
     `;
 }
 
