@@ -99,6 +99,12 @@ function openPokemon(indexAllPokemon) {
     });
 }
 
+function closePokemon() {
+    let dialogRef = document.getElementById('pokemonBig');
+    dialogRef.classList.remove('open');
+    dialogRef.close();
+}
+
 function renderPokemonBig(dialogRef, indexAllPokemon) {
     dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
     renderPokemonBigType(indexAllPokemon);
