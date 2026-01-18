@@ -454,6 +454,8 @@ dialog.open::backdrop {
 
 .arrowIcon {
     height: 56px;
+    fill: #192453;
+    cursor: pointer;
 }
 
 /* Footer */

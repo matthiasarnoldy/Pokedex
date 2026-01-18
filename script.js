@@ -1,6 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 const allPokemon = [];
 let loadDataResponse;
+let dialogRef;
 
 function init() {
     // loadData("pokemon?limit=40&offset=232")
@@ -90,10 +91,10 @@ async function loadMoreData(path="") {
 // }
 
 function openPokemon(indexAllPokemon) {
-    let dialogRef = document.getElementById('pokemonBig');
+    dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.add('open');
     document.body.classList.add('bodyOverflowH');
-    renderPokemonBig(dialogRef, indexAllPokemon);
+    renderPokemonBig(indexAllPokemon);
     dialogRef.showModal();
     dialogRef.addEventListener('close', () => {
         dialogRef.setAttribute('class', 'pokemonBig');
@@ -102,17 +103,16 @@ function openPokemon(indexAllPokemon) {
 }
 
 function closePokemon() {
-    let dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.remove('open');
     document.body.classList.remove('bodyOverflowH');
     dialogRef.close();
 }
 
-function renderPokemonBig(dialogRef, indexAllPokemon) {
+function renderPokemonBig(indexAllPokemon) {
     dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
     renderPokemonBigType(indexAllPokemon);
     renderPokemonAbout(indexAllPokemon);
-    setPokemonBg(dialogRef, indexAllPokemon);
+    setPokemonBg(indexAllPokemon);
 }
 
 function renderPokemonBigType(indexAllPokemon) {
@@ -149,6 +149,17 @@ function renderPokemonShiny(indexAllPokemon) {
     pokemonInfoRef.innerHTML = getPokemonShinyTemplate(indexAllPokemon);
 }
 
-function setPokemonBg(dialogRef, indexAllPokemon) {
+function setPokemonBg(indexAllPokemon) {
     dialogRef.classList.add(allPokemon[indexAllPokemon].types[0].type.name)
+}
+
+function changePokemon(indexAllPokemon, operator) {
+    if (indexAllPokemon > 0 && indexAllPokemon < (allPokemon.length - 1)) {
+        operator === "-" ? indexAllPokemon-- : indexAllPokemon++;
+    } else if (indexAllPokemon === 0) {
+        operator === "-" ? indexAllPokemon = allPokemon.length - 1 : indexAllPokemon++;
+    } else if (indexAllPokemon === (allPokemon.length - 1)) {
+        operator === "-" ? indexAllPokemon-- : indexAllPokemon = 0;
+    }
+    renderPokemonBig(indexAllPokemon);
 }
