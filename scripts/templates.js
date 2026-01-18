@@ -80,3 +80,9 @@ function getPokemonBigTypeTemplate(indexAllPokemon, indexPokemonType) {
         <span class="pokeTypeBig"><h4>${allPokemon[indexAllPokemon].types[indexPokemonType].type.name}</h4></span>
     `;
 }
+
+function getSearchErrorTemplate() {
+    return `
+        <h2 class="searchError">Es wurde kein Pokemon gefunden</h2>
+    `;
+}

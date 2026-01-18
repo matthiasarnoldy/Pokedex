@@ -85,6 +85,7 @@ function searchPokemon() {
     let searchFunction = searchFunctionRef.value;
     if (searchFunction.length >= 3) {
         pushPokemonAndRender(searchFunction);
+        renderError();
     } else {
         resetPokemonAndRender();
     }
@@ -98,6 +99,13 @@ function pushPokemonAndRender(searchFunction) {
         }
     });
     renderPokemonCard();
+}
+
+function renderError() {
+    if (allPokemon.length === 0) {
+        let pokemonAreaRef = document.getElementById('pokemonArea');
+        pokemonAreaRef.innerHTML = getSearchErrorTemplate();
+    }
 }
 
 function resetPokemonAndRender() {
