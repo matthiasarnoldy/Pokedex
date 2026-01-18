@@ -19,17 +19,15 @@ function getPokemonTypeTemplate(indexAllPokemon, indexPokemonType) {
 
 function getPokemonBigTemplate(indexAllPokemon) {
     return `
-        <section class="closeButton">
+        <header class="pokemonBigHeader">
+            <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
+            <h3 class="pokeId pokeIdBig">#${indexAllPokemon + 1}</h3>
             <svg onclick="closePokemon()" class="closeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                 <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 
                 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 
                 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 
                 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/>
             </svg>
-        </section>
-        <header class="pokemonBigHeader">
-            <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
-            <h3 class="pokeId">#${indexAllPokemon + 1}</h3>
         </header>
         <section class="pokemonPresentation">
             <div id="pokeBigType" class="pokeBigType"></div>
@@ -42,6 +40,10 @@ function getPokemonBigTemplate(indexAllPokemon) {
                 <li onclick="renderPokemonShiny(${indexAllPokemon})" id="infoAbilities" class="pokemonHeaderInfo"><h4>Shiny</h4></li>
             </ul>
             <main id="pokemonStats" class="pokemonStats"></main>
+            <footer class="navigationArrows">
+                <svg class="arrowIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M112 320C112 205.1 205.1 112 320 112C434.9 112 528 205.1 528 320C528 434.9 434.9 528 320 528C205.1 528 112 434.9 112 320zM576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576C461.4 576 576 461.4 576 320zM188.7 308.7C182.5 314.9 182.5 325.1 188.7 331.3L292.7 435.3C297.3 439.9 304.2 441.2 310.1 438.8C316 436.4 320 430.5 320 424L320 352L424 352C437.3 352 448 341.3 448 328L448 312C448 298.7 437.3 288 424 288L320 288L320 216C320 209.5 316.1 203.7 310.1 201.2C304.1 198.7 297.2 200.1 292.7 204.7L188.7 308.7z"/></svg>
+                <svg class="arrowIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M528 320C528 434.9 434.9 528 320 528C205.1 528 112 434.9 112 320C112 205.1 205.1 112 320 112C434.9 112 528 205.1 528 320zM64 320C64 461.4 178.6 576 320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320zM451.3 331.3C457.5 325.1 457.5 314.9 451.3 308.7L347.3 204.7C342.7 200.1 335.8 198.8 329.9 201.2C324 203.6 320 209.5 320 216L320 288L216 288C202.7 288 192 298.7 192 312L192 328C192 341.3 202.7 352 216 352L320 352L320 424C320 430.5 323.9 436.3 329.9 438.8C335.9 441.3 342.8 439.9 347.3 435.3L451.3 331.3z"/></svg>
+            </footer>
         </section>
     `;
 }

@@ -318,6 +318,10 @@ a:hover {
     transition: all 125ms;
 }
 
+.bodyOverflowH {
+    overflow: hidden;
+}
+
 dialog::backdrop {
     border: none;
     opacity: 0;
@@ -330,7 +334,7 @@ dialog.open::backdrop {
     transition: all 125ms ease-in;
 }
 
-.closeButton {
+.closeIcon {
     display: none;
 }
 
@@ -437,8 +441,19 @@ dialog.open::backdrop {
 }
 
 .pokeImgShiny {
-    width: 84%;
-    height: 84%;
+    width: 184px;
+    height: 184px;
+}
+
+.navigationArrows {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrowIcon {
+    height: 56px;
 }
 
 /* Footer */
@@ -571,11 +586,6 @@ dialog.open::backdrop {
     .pokemonStats {
         padding: 0 156px;
     }
-
-    .pokeImgShiny {
-        width: 100%;
-        height: 100%;
-    }
 }
 
 @media (max-width: 930px) {
@@ -622,18 +632,19 @@ dialog.open::backdrop {
     }
 
     .pokemonBigHeader {
-        padding: 0 32px 32px;
+        padding: 16px 32px 32px;
+    }
+
+    .pokeIdBig {
+        display: none;
     }
 
     .pokemonPresentation {
         padding: 0 32px 16px;
     }
     
-    .closeButton {
-        width: 100%;
-        padding: 16px 32px;
+    .closeIcon {
         display: flex;
-        justify-content: flex-end;
     }
 
     .closeIcon {
@@ -680,7 +691,7 @@ dialog.open::backdrop {
     }
 
     .pokemonBigHeader {
-        padding: 0 24px 24px;
+        padding: 16px 24px 24px;
     }
 
     .pokemonPresentation {
@@ -704,6 +715,10 @@ dialog.open::backdrop {
         margin-right: 0;
     }
 
+    .pokemonInfo {
+        gap: 8px;
+    }
+
     .pokemonStats {
         padding: 0 80px;
     }
@@ -716,9 +731,13 @@ dialog.open::backdrop {
     }
 
     .pokeImgShiny {
-        width: 100%;
-        height: 100%;
-        margin-top: -40px;
+        width: 128px;
+        height: 128px;
+        object-fit: cover;
+    }
+
+    .arrowIcon {
+        height: 40px;
     }
 
     /* Footer */
@@ -788,7 +807,7 @@ dialog.open::backdrop {
     }
 
     .pokemonBigHeader {
-        padding: 0 16px 16px;
+        padding: 16px 16px;
     }
 
     .pokemonPresentation {

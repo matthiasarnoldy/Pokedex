@@ -92,16 +92,19 @@ async function loadMoreData(path="") {
 function openPokemon(indexAllPokemon) {
     let dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.add('open');
+    document.body.classList.add('bodyOverflowH');
     renderPokemonBig(dialogRef, indexAllPokemon);
     dialogRef.showModal();
     dialogRef.addEventListener('close', () => {
         dialogRef.setAttribute('class', 'pokemonBig');
+        document.body.classList.remove('bodyOverflowH');
     });
 }
 
 function closePokemon() {
     let dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.remove('open');
+    document.body.classList.remove('bodyOverflowH');
     dialogRef.close();
 }
 
