@@ -103,7 +103,6 @@ a:hover {
 
 .labelSearch {
     width: 256px;
-    padding: 6px;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -119,11 +118,14 @@ a:hover {
 }
 
 .iconSearch {
-    height: 32px;
+    height: 40px;
+    padding: 4px;
+    background-color: #ED5564;
+    cursor: pointer;
 }
 
 .inputSearch {
-    width: 200px;
+    width: 160px;
     border: none;
     background-color: #eee;
     outline: none;
@@ -146,6 +148,7 @@ a:hover {
 }
 
 .pokemonArea {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -5,7 +5,7 @@ function getPokemonCardTemplate(indexAllPokemon) {
             <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
             <section class="pokeTypeImg">
                 <div id="pokeType${indexAllPokemon}" class="pokeType"></div>
-                <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImg"></figure>
+                <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImg"></figure>
             </section>
         </div>
     `;
@@ -31,7 +31,7 @@ function getPokemonBigTemplate(indexAllPokemon) {
         </header>
         <section class="pokemonPresentation">
             <div id="pokeBigType" class="pokeBigType"></div>
-            <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgBig"></figure>
+            <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.dream_world.front_default}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgBig"></figure>
         </section>
         <section class="pokemonInfo">
             <ul class="pokemonNav">
@@ -71,7 +71,7 @@ function getPokemonStatsTemplate(indexAllPokemon, indexInfo) {
 
 function getPokemonShinyTemplate(indexAllPokemon) {
     return `
-        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.home.front_shiny}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgShiny"></figure>
+        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.home.front_shiny}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgShiny"></figure>
     `;
 }
 

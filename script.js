@@ -1,24 +1,25 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
+const cacheAllPokemon = [];
 const allPokemon = [];
 let loadDataResponse;
 let dialogRef;
+let pokemonInfoRef;
 
 function init() {
-    // loadData("pokemon?limit=40&offset=232")
     loadData("pokemon?limit=40&offset=0")
 }
 
 async function loadData(path="") {
     let response = await fetch(BASE_URL + path + ".json")
     let responseAsJson = await response.json();
-    responseAsJson.results.forEach(pokemon => allPokemon.push(pokemon));
+    responseAsJson.results.forEach(pokemon => cacheAllPokemon.push(pokemon));
     loadDataResponse = responseAsJson;
     console.log(responseAsJson);
     pokemonUrlToPath();
 }
 
 function pokemonUrlToPath() {
-    allPokemon.forEach((pokemon) => {
+    cacheAllPokemon.forEach((pokemon) => {
         if (pokemon.url.length > 20) {
             pokemon.url = (pokemon.url.slice(26));
         }
@@ -27,29 +28,31 @@ function pokemonUrlToPath() {
 }
 
 async function loadPokemonData() {
-    let path = "";
-    let response;
-    let responseAsJson;
-    for (let indexPokeData = 0; indexPokeData < allPokemon.length; indexPokeData++) {
-        path = allPokemon[indexPokeData].url;
-        response = await fetch(BASE_URL + path);
-        responseAsJson = await response.json();
+    for (let indexPokeData = 0; indexPokeData < cacheAllPokemon.length; indexPokeData++) {
+        let response = await fetch(BASE_URL + cacheAllPokemon[indexPokeData].url);
+        console.log(response)
+        let responseAsJson = await response.json();
         pushPokemonData(indexPokeData, responseAsJson);
     }
+    cacheToAllPokemon();
     console.log(allPokemon)
     renderPokemonCard();
 }
 
+function cacheToAllPokemon() {
+    cacheAllPokemon.forEach((pokemon) => allPokemon.push(pokemon));
+}
+
 function pushPokemonData(indexPokeData, responseAsJson) {
-    allPokemon[indexPokeData].abilities = responseAsJson.abilities;
-    allPokemon[indexPokeData].height = responseAsJson.height;
-    allPokemon[indexPokeData].held_items = responseAsJson.held_items;
-    allPokemon[indexPokeData].id = responseAsJson.id;
-    allPokemon[indexPokeData].species = responseAsJson.species;
-    allPokemon[indexPokeData].sprites = responseAsJson.sprites;
-    allPokemon[indexPokeData].stats = responseAsJson.stats;
-    allPokemon[indexPokeData].types = responseAsJson.types;
-    allPokemon[indexPokeData].weight = responseAsJson.weight;
+    cacheAllPokemon[indexPokeData].sprites = responseAsJson.sprites.other;
+    cacheAllPokemon[indexPokeData].abilities = responseAsJson.abilities;
+    cacheAllPokemon[indexPokeData].height = responseAsJson.height;
+    cacheAllPokemon[indexPokeData].held_items = responseAsJson.held_items;
+    cacheAllPokemon[indexPokeData].id = responseAsJson.id;
+    cacheAllPokemon[indexPokeData].species = responseAsJson.species;
+    cacheAllPokemon[indexPokeData].stats = responseAsJson.stats;
+    cacheAllPokemon[indexPokeData].types = responseAsJson.types;
+    cacheAllPokemon[indexPokeData].weight = responseAsJson.weight;
 }
 
 function renderPokemonCard() {
@@ -77,18 +80,31 @@ async function loadMoreData(path="") {
     pokemonUrlToPath();
 }
 
-// function searchPokemon() {
-//     let searchFunctionRef = document.getElementById('headerSearch');
-//     let searchFunction = searchFunctionRef.value;
-//     let nameKey = [];
-//     allPokemon.forEach(pokemon => nameKey.push(pokemon.name))
-//     console.log(nameKey)
-//     if (searchFunction.length >= 3) {
-//         nameKey.find(() => {
-//             console.log(searchFunction);
-//         })
-//     }
-// }
+function searchPokemon() {
+    let searchFunctionRef = document.getElementById('headerSearch');
+    let searchFunction = searchFunctionRef.value;
+    if (searchFunction.length >= 3) {
+        pushPokemonAndRender(searchFunction);
+    } else {
+        resetPokemonAndRender();
+    }
+}
+
+function pushPokemonAndRender(searchFunction) {
+    allPokemon.splice(0, allPokemon.length);
+    cacheAllPokemon.forEach(pokemon => {
+        if (pokemon.name.includes(searchFunction)) {
+            allPokemon.push(pokemon);
+        }
+    });
+    renderPokemonCard();
+}
+
+function resetPokemonAndRender() {
+    allPokemon.splice(0, allPokemon.length);
+    cacheToAllPokemon();
+    renderPokemonCard();
+}
 
 function openPokemon(indexAllPokemon) {
     dialogRef = document.getElementById('pokemonBig');
@@ -123,8 +139,7 @@ function renderPokemonBigType(indexAllPokemon) {
 }
 
 function renderPokemonAbout(indexAllPokemon) {
-    let pokemonInfoRef = document.getElementById('pokemonStats');
-    pokemonInfoRef.innerHTML = "";
+    pokemonInfoRef = document.getElementById('pokemonStats');
     pokemonInfoRef.innerHTML = getPokemonAboutTemplate(indexAllPokemon);
     renderPokemonAboutAbilities(indexAllPokemon);
 }
@@ -137,7 +152,6 @@ function renderPokemonAboutAbilities(indexAllPokemon) {
 }
 
 function renderPokemonStats(indexAllPokemon) {
-    let pokemonInfoRef = document.getElementById('pokemonStats');
     pokemonInfoRef.innerHTML = "";
     for (let indexInfo = 0; indexInfo < allPokemon[indexAllPokemon].stats.length; indexInfo++) {
         pokemonInfoRef.innerHTML += getPokemonStatsTemplate(indexAllPokemon, indexInfo);
@@ -145,7 +159,6 @@ function renderPokemonStats(indexAllPokemon) {
 }
 
 function renderPokemonShiny(indexAllPokemon) {
-    let pokemonInfoRef = document.getElementById('pokemonStats');
     pokemonInfoRef.innerHTML = getPokemonShinyTemplate(indexAllPokemon);
 }
 
