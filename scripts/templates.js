@@ -69,7 +69,7 @@ function getPokemonStatsTemplate(indexAllPokemon, indexInfo) {
 
 function getPokemonShinyTemplate(indexAllPokemon) {
     return `
-        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.home.front_shiny}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgBig"></figure>
+        <figure><img loading="lazy" src="${allPokemon[indexAllPokemon].sprites.other.home.front_shiny}" alt="${(allPokemon[indexAllPokemon].name)}" class="pokeImgShiny"></figure>
     `;
 }
 
