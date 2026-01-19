@@ -14,7 +14,6 @@ async function loadData(path="") {
     let responseAsJson = await response.json();
     responseAsJson.results.forEach(pokemon => cacheAllPokemon.push(pokemon));
     loadDataResponse = responseAsJson;
-    console.log(responseAsJson);
     pokemonUrlToPath();
 }
 
@@ -31,13 +30,11 @@ async function loadPokemonData() {
     for (let indexPokeData = 0; indexPokeData < cacheAllPokemon.length; indexPokeData++) {
         if (Object.keys(cacheAllPokemon[indexPokeData]).length < 3) {
             let response = await fetch(BASE_URL + cacheAllPokemon[indexPokeData].url);
-            console.log(response)
             let responseAsJson = await response.json();
             pushPokemonData(indexPokeData, responseAsJson);
         }
     }
     cacheToAllPokemon();
-    console.log(allPokemon)
     hideLoadingScreen();
     renderPokemonCard();
 }
