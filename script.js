@@ -111,7 +111,7 @@ async function loadMoreData(path="") {
 
 function searchPokemon() {
     let searchFunctionRef = document.getElementById('headerSearch');
-    let searchFunction = searchFunctionRef.value;
+    let searchFunction = searchFunctionRef.value.toLowerCase();
     if (searchFunction.length >= 3) {
         hideLoadMoreButton();
         pushPokemonAndRender(searchFunction);
