@@ -23,7 +23,7 @@ function pokemonUrlToPath() {
         if (pokemon.url.length > 20) {
             pokemon.url = (pokemon.url.slice(26));
         }
-    });
+    })
     loadPokemonData();
 }
 

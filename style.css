@@ -135,7 +135,7 @@ a:hover {
 .main {
     padding: 32px 0;
     background-color: #ddd;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
