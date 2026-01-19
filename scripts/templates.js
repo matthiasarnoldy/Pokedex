@@ -1,7 +1,7 @@
 function getPokemonCardTemplate(indexAllPokemon) {
     return `
         <div onclick="openPokemon(${indexAllPokemon})" tabindex="${indexAllPokemon + 10}" class="pokemon ${allPokemon[indexAllPokemon].types[0].type.name}">
-            <header class="pokeId"><h3>#${indexAllPokemon + 1}</h3></header>
+            <header class="pokeId"><h3>#${allPokemon[indexAllPokemon].id}</h3></header>
             <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
             <section class="pokeTypeImg">
                 <div id="pokeType${indexAllPokemon}" class="pokeType"></div>
@@ -17,13 +17,13 @@ function getPokemonTypeTemplate(indexAllPokemon, indexPokemonType) {
     `;
 }
 
-function getPokemonBigTemplate(indexAllPokemon) {
+function getPokemonDialogTemplate(indexAllPokemon) {
     return `
         <header class="pokemonBigHeader">
             <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
-            <h3 class="pokeId pokeIdBig">#${indexAllPokemon + 1}</h3>
+            <h3 class="pokeId pokeIdBig">#${allPokemon[indexAllPokemon].id}</h3>
             <svg onclick="closePokemon()" class="closeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 
+                <path onclick="closePokemon()" d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 
                 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 
                 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 
                 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/>
@@ -35,9 +35,9 @@ function getPokemonBigTemplate(indexAllPokemon) {
         </section>
         <section class="pokemonInfo">
             <ul class="pokemonNav">
-                <li onclick="renderPokemonAbout(${indexAllPokemon})" id="infoAbout" class="pokemonHeaderInfo"><h4>About</h4></li>
-                <li onclick="renderPokemonStats(${indexAllPokemon})" id="infoStats" class="pokemonHeaderInfo"><h4>Stats</h4></li>
-                <li onclick="renderPokemonShiny(${indexAllPokemon})" id="infoAbilities" class="pokemonHeaderInfo"><h4>Shiny</h4></li>
+                <li onclick="setAbout(${indexAllPokemon})" id="infoAbout" class="pokemonHeaderInfo"><h4>About</h4></li>
+                <li onclick="setStats(${indexAllPokemon})" id="infoStats" class="pokemonHeaderInfo"><h4>Stats</h4></li>
+                <li onclick="setShiny(${indexAllPokemon})" id="infoAbilities" class="pokemonHeaderInfo"><h4>Shiny</h4></li>
             </ul>
             <main id="pokemonStats" class="pokemonStats"></main>
             <footer class="navigationArrows">
@@ -75,7 +75,7 @@ function getPokemonShinyTemplate(indexAllPokemon) {
     `;
 }
 
-function getPokemonBigTypeTemplate(indexAllPokemon, indexPokemonType) {
+function getPokemonDialogTypeTemplate(indexAllPokemon, indexPokemonType) {
     return `
         <span class="pokeTypeBig"><h4>${allPokemon[indexAllPokemon].types[indexPokemonType].type.name}</h4></span>
     `;

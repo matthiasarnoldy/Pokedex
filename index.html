@@ -16,7 +16,7 @@
 <body onload="init()">
     <header class="header">
         <div class="content_max-width headerPosition">
-            <a href="index.html" class="pokemonLogo" tabindex="1">
+            <a onclick="cacheToAllPokemon()" href="#" class="pokemonLogo" tabindex="1">
                 <figure><img src="./assets/img/pokemonLogo.png" alt="Pokemon ball" class="headerLogo"></figure>
                 <h1 class="headlineLogo">Pokédex</h1>
             </a>
@@ -31,16 +31,16 @@
         </div>
     </header>
     <main class="main">
-        <div id="main" class="content_max-width mainContent_max-width" style="display: none;">
+        <div id="main" class="content_max-width mainContent_max-width">
             <section id="pokemonArea" class="pokemonArea"></section>
             <section class="loadMore">
-                <button onclick="loadMoreData(loadDataResponse.next)" class="loadMorePokemon">Load more</button>
+                <button onclick="loadMoreData(loadDataResponse.next)" id="loadMorePokemon" class="loadMorePokemon" style="display: none;">Load more</button>
             </section>
+            <aside id="loadingScreen" class="loadingScreen">
+                <figure><img src="./assets/img/loadingScreen.png" alt="LoadingScreen" class="loadingScreenImg"></figure>
+                <h2 class="loadingHeadline">loading...</h2>
+            </aside>
         </div>
-        <aside id="loadingScreen" class="loadingScreen">
-            <figure><img src="./assets/img/loadingScreen.png" alt="LoadingScreen" class="loadingScreenImg"></figure>
-            <h2 class="loadingHeadline">loading...</h2>
-        </aside>
     </main>
     <dialog closedby="any" id="pokemonBig" class="pokemonBig"></dialog>
     <footer class="footer">

@@ -6,7 +6,7 @@ let dialogRef;
 let pokemonInfoRef;
 
 function init() {
-    loadData("pokemon?limit=40&offset=0")
+    loadData("pokemon?limit=20&offset=0")
 }
 
 async function loadData(path="") {
@@ -34,34 +34,47 @@ async function loadPokemonData() {
             pushPokemonData(indexPokeData, responseAsJson);
         }
     }
-    cacheToAllPokemon();
     hideLoadingScreen();
-    renderPokemonCard();
+    cacheToAllPokemon();
 }
 
 function cacheToAllPokemon() {
+    showLoadMoreButton();
+    clearAllPokemon();
     cacheAllPokemon.forEach((pokemon) => allPokemon.push(pokemon));
+    renderPokemonCard();
 }
 
 function hideLoadingScreen() {
     let loadingScreen = document.getElementById('loadingScreen');
-    let main = document.getElementById('main');
     loadingScreen.classList.add('loadingScreenHidden');
-    main.style.display = "flex";
+    showLoadMoreButton();
 }
 
 function showLoadingScreen() {
     let loadingScreen = document.getElementById('loadingScreen');
-    let main = document.getElementById('main');
     loadingScreen.classList.remove('loadingScreenHidden');
-    main.style.display = "none";
+    hideLoadMoreButton();
+}
+
+function hideLoadMoreButton() {
+    let button = document.getElementById('loadMorePokemon');
+    button.style.display = "none";
+}
+
+function showLoadMoreButton() {
+    let button = document.getElementById('loadMorePokemon');
+    button.style.display = "flex";
+}
+
+function clearAllPokemon() {
+    allPokemon.splice(0, allPokemon.length);
 }
 
 function pushPokemonData(indexPokeData, responseAsJson) {
     cacheAllPokemon[indexPokeData].sprites = responseAsJson.sprites.other;
     cacheAllPokemon[indexPokeData].abilities = responseAsJson.abilities;
     cacheAllPokemon[indexPokeData].height = responseAsJson.height;
-    cacheAllPokemon[indexPokeData].held_items = responseAsJson.held_items;
     cacheAllPokemon[indexPokeData].id = responseAsJson.id;
     cacheAllPokemon[indexPokeData].species = responseAsJson.species;
     cacheAllPokemon[indexPokeData].stats = responseAsJson.stats;
@@ -90,7 +103,7 @@ async function loadMoreData(path="") {
     showLoadingScreen();
     let response = await fetch(path + ".json")
     let responseAsJson = await response.json();
-    allPokemon.splice(0, allPokemon.length);
+    clearAllPokemon();
     loadDataResponse = responseAsJson;
     responseAsJson.results.forEach(pokemon => cacheAllPokemon.push(pokemon));
     pokemonUrlToPath();
@@ -100,15 +113,18 @@ function searchPokemon() {
     let searchFunctionRef = document.getElementById('headerSearch');
     let searchFunction = searchFunctionRef.value;
     if (searchFunction.length >= 3) {
+        hideLoadMoreButton();
         pushPokemonAndRender(searchFunction);
         renderError();
     } else {
+        showLoadMoreButton();
         resetPokemonAndRender();
     }
+    searchFunctionRef.value = '';
 }
 
 function pushPokemonAndRender(searchFunction) {
-    allPokemon.splice(0, allPokemon.length);
+    clearAllPokemon();
     cacheAllPokemon.forEach(pokemon => {
         if (pokemon.name.includes(searchFunction)) {
             allPokemon.push(pokemon);
@@ -125,16 +141,14 @@ function renderError() {
 }
 
 function resetPokemonAndRender() {
-    allPokemon.splice(0, allPokemon.length);
     cacheToAllPokemon();
-    renderPokemonCard();
 }
 
 function openPokemon(indexAllPokemon) {
     dialogRef = document.getElementById('pokemonBig');
     dialogRef.classList.add('open');
     document.body.classList.add('bodyOverflowH');
-    renderPokemonBig(indexAllPokemon);
+    renderDialog(indexAllPokemon);
     dialogRef.showModal();
     dialogRef.addEventListener('close', () => {
         dialogRef.setAttribute('class', 'pokemonBig');
@@ -148,41 +162,41 @@ function closePokemon() {
     dialogRef.close();
 }
 
-function renderPokemonBig(indexAllPokemon) {
-    dialogRef.innerHTML = getPokemonBigTemplate(indexAllPokemon);
-    renderPokemonBigType(indexAllPokemon);
-    renderPokemonAbout(indexAllPokemon);
+function renderDialog(indexAllPokemon) {
+    dialogRef.innerHTML = getPokemonDialogTemplate(indexAllPokemon);
+    renderDialogTypeType(indexAllPokemon);
+    setAbout(indexAllPokemon);
     setPokemonBg(indexAllPokemon);
 }
 
-function renderPokemonBigType(indexAllPokemon) {
+function renderDialogTypeType(indexAllPokemon) {
     let pokemonTypeRef = document.getElementById('pokeBigType');
     for (let indexPokemonType = 0; indexPokemonType < allPokemon[indexAllPokemon].types.length; indexPokemonType++) {
-        pokemonTypeRef.innerHTML += getPokemonBigTypeTemplate(indexAllPokemon, indexPokemonType); 
+        pokemonTypeRef.innerHTML += getPokemonDialogTypeTemplate(indexAllPokemon, indexPokemonType); 
     }
 }
 
-function renderPokemonAbout(indexAllPokemon) {
+function setAbout(indexAllPokemon) {
     pokemonInfoRef = document.getElementById('pokemonStats');
     pokemonInfoRef.innerHTML = getPokemonAboutTemplate(indexAllPokemon);
-    renderPokemonAboutAbilities(indexAllPokemon);
+    setAbilities(indexAllPokemon);
 }
 
-function renderPokemonAboutAbilities(indexAllPokemon) {
+function setAbilities(indexAllPokemon) {
     let aboutAbilitiesRef = document.getElementById('aboutAbilities');
     for (let indexAbilities = 0; indexAbilities < allPokemon[indexAllPokemon].abilities.length; indexAbilities++) {
         aboutAbilitiesRef.innerHTML += getPokemonAbilitiesTemplate(indexAllPokemon, indexAbilities)
     }
 }
 
-function renderPokemonStats(indexAllPokemon) {
+function setStats(indexAllPokemon) {
     pokemonInfoRef.innerHTML = "";
     for (let indexInfo = 0; indexInfo < allPokemon[indexAllPokemon].stats.length; indexInfo++) {
         pokemonInfoRef.innerHTML += getPokemonStatsTemplate(indexAllPokemon, indexInfo);
     }
 }
 
-function renderPokemonShiny(indexAllPokemon) {
+function setShiny(indexAllPokemon) {
     pokemonInfoRef.innerHTML = getPokemonShinyTemplate(indexAllPokemon);
 }
 
@@ -198,5 +212,5 @@ function changePokemon(indexAllPokemon, operator) {
     } else if (indexAllPokemon === (allPokemon.length - 1)) {
         operator === "-" ? indexAllPokemon-- : indexAllPokemon = 0;
     }
-    renderPokemonBig(indexAllPokemon);
+    renderDialog(indexAllPokemon);
 }

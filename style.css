@@ -559,6 +559,12 @@ dialog.open::backdrop {
     text-underline-offset: none;
 }
 
+@media (min-width: 1440px) {
+    .pokemonBig.open {
+        height: 980px;
+    }
+}
+
 @media (max-width: 1090px) {
     /* Allgemein */
     h1 {
@@ -677,15 +683,20 @@ dialog.open::backdrop {
     .pokemonPresentation {
         padding: 0 32px 16px;
     }
-    
-    .closeIcon {
-        display: flex;
-    }
 
     .closeIcon {
+        display: flex;
         height: 32px;
         fill: #eee;
         cursor: pointer;
+        z-index: 10;
+    }
+
+    /* Loading Screen */
+    .loadingScreenImg {
+        width: 224px;
+        height: 224px;
+        animation: loadingScreen 1.5s infinite linear;
     }
 }
 
@@ -773,6 +784,13 @@ dialog.open::backdrop {
 
     .arrowIcon {
         height: 40px;
+    }
+
+    /* Loading Screen */
+    .loadingScreenImg {
+        width: 188px;
+        height: 188px;
+        animation: loadingScreen 1.5s infinite linear;
     }
 
     /* Footer */
@@ -876,6 +894,13 @@ dialog.open::backdrop {
         padding: 16px;
         display: flex;
         justify-content: flex-end;
+    }
+
+    /* Loading Screen */
+    .loadingScreenImg {
+        width: 144px;
+        height: 144px;
+        animation: loadingScreen 1.5s infinite linear;
     }
 
     /* Footer */
