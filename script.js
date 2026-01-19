@@ -45,14 +45,14 @@ function cacheToAllPokemon() {
 
 function hideLoadingScreen() {
     let loadingScreen = document.getElementById('loadingScreen');
-    let main = document.getElementById('mainHidden');
+    let main = document.getElementById('main');
     loadingScreen.classList.add('loadingScreenHidden');
     main.style.display = "flex";
 }
 
 function showLoadingScreen() {
     let loadingScreen = document.getElementById('loadingScreen');
-    let main = document.getElementById('mainHidden');
+    let main = document.getElementById('main');
     loadingScreen.classList.remove('loadingScreenHidden');
     main.style.display = "none";
 }

@@ -30,18 +30,18 @@
             </label>
         </div>
     </header>
-    <main id="mainHidden" class="main" style="display: none;">
-        <div id="main" class="content_max-width mainContent_max-width">
+    <main class="main">
+        <div id="main" class="content_max-width mainContent_max-width" style="display: none;">
             <section id="pokemonArea" class="pokemonArea"></section>
             <section class="loadMore">
                 <button onclick="loadMoreData(loadDataResponse.next)" class="loadMorePokemon">Load more</button>
             </section>
         </div>
+        <aside id="loadingScreen" class="loadingScreen">
+            <figure><img src="./assets/img/loadingScreen.png" alt="LoadingScreen" class="loadingScreenImg"></figure>
+            <h2 class="loadingHeadline">loading...</h2>
+        </aside>
     </main>
-    <aside id="loadingScreen" class="loadingScreen">
-        <figure><img src="./assets/img/loadingScreen.png" alt="LoadingScreen" class="loadingScreenImg"></figure>
-        <h2 class="loadingHeadline">loading...</h2>
-    </aside>
     <dialog closedby="any" id="pokemonBig" class="pokemonBig"></dialog>
     <footer class="footer">
         <div class="footerContent_max-width">

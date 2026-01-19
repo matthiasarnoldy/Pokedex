@@ -474,17 +474,17 @@ dialog.open::backdrop {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    gap: 24px;
 }
 
 .loadingScreenImg {
-    width: 100%;
-    height: 80vh;
-    object-fit: cover;
+    width: 256px;
+    height: 256px;
+    animation: loadingScreen 1.5s infinite linear;
 }
 
 .loadingHeadline {
-    position: absolute;
-    margin: 65vh;
+    color: #192453;
 }
 
 .loadingScreenHidden {
@@ -921,5 +921,15 @@ dialog.open::backdrop {
     }
     100% {
         scale: 1;
+    }
+}
+
+@keyframes loadingScreen {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
