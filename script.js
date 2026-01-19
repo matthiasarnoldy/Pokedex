@@ -29,18 +29,35 @@ function pokemonUrlToPath() {
 
 async function loadPokemonData() {
     for (let indexPokeData = 0; indexPokeData < cacheAllPokemon.length; indexPokeData++) {
-        let response = await fetch(BASE_URL + cacheAllPokemon[indexPokeData].url);
-        console.log(response)
-        let responseAsJson = await response.json();
-        pushPokemonData(indexPokeData, responseAsJson);
+        if (Object.keys(cacheAllPokemon[indexPokeData]).length < 3) {
+            let response = await fetch(BASE_URL + cacheAllPokemon[indexPokeData].url);
+            console.log(response)
+            let responseAsJson = await response.json();
+            pushPokemonData(indexPokeData, responseAsJson);
+        }
     }
     cacheToAllPokemon();
     console.log(allPokemon)
+    hideLoadingScreen();
     renderPokemonCard();
 }
 
 function cacheToAllPokemon() {
     cacheAllPokemon.forEach((pokemon) => allPokemon.push(pokemon));
+}
+
+function hideLoadingScreen() {
+    let loadingScreen = document.getElementById('loadingScreen');
+    let main = document.getElementById('mainHidden');
+    loadingScreen.classList.add('loadingScreenHidden');
+    main.style.display = "flex";
+}
+
+function showLoadingScreen() {
+    let loadingScreen = document.getElementById('loadingScreen');
+    let main = document.getElementById('mainHidden');
+    loadingScreen.classList.remove('loadingScreenHidden');
+    main.style.display = "none";
 }
 
 function pushPokemonData(indexPokeData, responseAsJson) {
@@ -73,10 +90,12 @@ function renderPokemonCardType(indexAllPokemon) {
 }
 
 async function loadMoreData(path="") {
+    showLoadingScreen();
     let response = await fetch(path + ".json")
     let responseAsJson = await response.json();
+    allPokemon.splice(0, allPokemon.length);
     loadDataResponse = responseAsJson;
-    responseAsJson.results.forEach(pokemon => allPokemon.push(pokemon));
+    responseAsJson.results.forEach(pokemon => cacheAllPokemon.push(pokemon));
     pokemonUrlToPath();
 }
 

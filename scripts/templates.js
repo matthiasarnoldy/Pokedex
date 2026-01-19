@@ -1,6 +1,6 @@
 function getPokemonCardTemplate(indexAllPokemon) {
     return `
-        <div onclick="openPokemon(${indexAllPokemon})" class="pokemon ${allPokemon[indexAllPokemon].types[0].type.name}">
+        <div onclick="openPokemon(${indexAllPokemon})" tabindex="${indexAllPokemon + 10}" class="pokemon ${allPokemon[indexAllPokemon].types[0].type.name}">
             <header class="pokeId"><h3>#${indexAllPokemon + 1}</h3></header>
             <h2 class="pokeName">${(allPokemon[indexAllPokemon].name).toUpperCase()}</h2>
             <section class="pokeTypeImg">
